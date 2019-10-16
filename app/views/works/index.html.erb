@@ -10,10 +10,10 @@
   <ul>
     <% @works.each do |work| %>
       <li>
-        <%= link_to work.title, work_path( work.id ) %> by <%= work.creator %>
-        <%= link_to "(Delete)", work_path( work.id ), method: :delete, data: { confirm: "Are YOU sure?" }, class: "index-delete-link" %>
-      </li>
-    <% end %>
+         <%= link_to work.title, work_path( work.id ) %> by <%= work.creator %>
+         <%= link_to "(Delete)", work_path( work.id ), method: :delete, data: { confirm: "Are YOU sure?" }, class: "index-delete-link" %> 
+       </li> 
+     <% end%>
   </ul>
   <%# <% if @work.creator %> 
     <%# <%= link_to "Create a new work by " + @work.creator, new_work_path %> 
