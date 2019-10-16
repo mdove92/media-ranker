@@ -11,7 +11,6 @@ class WorksController < ApplicationController
 
   def show
     @work_id = params[:id].to_i
-
     if @work.nil?
       redirect_to works_path
       return
@@ -49,6 +48,7 @@ class WorksController < ApplicationController
   end
 
   def destroy
+    work_to_delete = Work.find_by(id: params[:id])
     if work_to_delete.nil?
       redirect_to works_path
       return
@@ -70,6 +70,6 @@ class WorksController < ApplicationController
   end
 
   def find_work
-    @work = Work.find_by(id: @work_id)
+    @work = Work.find_by_id(params[:id])
   end
 end
