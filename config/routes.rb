@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  root to: "works#index"
+  root to: "homepages#index"
+  get "/homepages", to: "homepages#index"
 
   get "/login", to: "users#login_form", as: "login"
   post "/login", to: "users#login"
