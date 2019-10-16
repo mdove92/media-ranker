@@ -1,0 +1,21 @@
+<h1 class="index-header">The Index Action: The place where you get all of the works!</h1>
+
+<section>
+  <h2>
+    List of all Works 
+    <% if @work %>
+      by <%= @work %>
+    <% end %>
+  </h2>
+  <ul>
+    <% @works.each do |work| %>
+      <li>
+        <%= link_to work.title, work_path( work.id ) %> by <%= work.creator %>
+        <%= link_to "(Delete)", work_path( work.id ), method: :delete, data: { confirm: "Are YOU sure?" }, class: "index-delete-link" %>
+      </li>
+    <% end %>
+  </ul>
+  <%# <% if @work.creator %> 
+    <%# <%= link_to "Create a new work by " + @work.creator, new_work_path %> 
+  <%# <% end %> 
+</section>

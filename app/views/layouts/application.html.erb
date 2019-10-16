@@ -10,6 +10,43 @@
   </head>
 
   <body>
+
+    <nav>
+      <ul>
+        <li>
+          <%# This is the syntax for defining a link in HTML (More in depth in View Helpers lesson) %>
+          <%= link_to "Home!", root_path %>
+        </li>
+        <li>
+          <%= link_to "Go to the Works Index Page", works_path %>
+        </li>
+        <li>
+          <%= link_to "Let's make a new work", new_work_path %>
+        </li>
+        <li>
+        <% if @user%>
+          <%= link_to "Logout", logout_path, method: :post %>
+          <% else %>
+           <%= link_to "Login", login_path %>
+           <%end%>
+        </li>
+        <li>
+        <% if @user%>
+        You are logged in as <%=@user.username%>
+        <%end%>
+        </li>
+      </ul>
+
+    </nav>
+
+    <%# Our nice generic way of displaying flash messages: Iterating over the hash-like structure of flash and setting all HTML elements and CSS classes however we want. %>
+    <section class="user-messages">
+      <% flash.each do |name, message| %>
+        <div class="<%= name %>"><%= name.capitalize %>: <%= message %></div>
+      <% end %>
+    </section>
+
+
     <%= yield %>
   </body>
 </html>

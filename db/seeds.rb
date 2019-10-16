@@ -14,6 +14,7 @@ work_failures = []
 CSV.foreach(WORK_FILE, :headers => true) do |row|
   work = Work.new
   work.creator = row["creator"]
+  work.title = row["title"]
   work.publication_year = row["publication_year"].to_i
   work.description = row["description"]
   work.category = row["category"]
