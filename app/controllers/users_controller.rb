@@ -3,6 +3,14 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def show
+    @user_id = params[:id].to_i
+    if @user.nil?
+      redirect_to user_path
+      return
+    end
+  end
+
   def login_form
     @user = User.new
   end
