@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   post "/logout", to: "users#logout", as: "logout"
   get "/users/current", to: "users#current", as: "current_user"
 
+  post "/upvote", to: "votes#create", as: "upvote"
+
   resources :users
   resources :works
   resources :votes

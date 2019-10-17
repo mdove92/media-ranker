@@ -17,10 +17,10 @@
 <td><%= book.title %></td>
 <td><%= book.creator %></td>
 <td><%= book.publication_year %></td>
- <% if book %>
-<td><%= "upvoted" %></td>
+ <% if Vote.find_by(work_id: book.id, user_id: @user.id) %>
+<td><%=  link_to "Un-Upvote" , upvote_path(work_id: book.id, user_id: @user.id), method: :post, class:"btn btn-primary"%></td>
 <% else %>
-<td>   <%=link_to "Upvote", root_path, class:"btn btn-primary" %></td>        
+<td>   <%=link_to "Upvote", upvote_path(work_id: book.id, user_id: @user.id), method: :post, class:"btn btn-primary" %></td>        
 <%end%>
 </tr>
 <%end%>
