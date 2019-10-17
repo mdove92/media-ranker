@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   end
 
   def login
-    username = params[:user][:username]
+    username = params[:username]
     @user = User.find_by(username: username)
     if @user
       session[:user_id] = @user.id
