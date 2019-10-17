@@ -1,4 +1,5 @@
 <%# form_with is a view helper that will generate the proper form for us and will help us hook into the other controller actions %>
+<main class="content-container">
 <%= form_with model: @work, class: book_form_class do |f| %>
 
   <%# f.text_field :somenameofsomeattributeonbook ... in this case, :title %>
@@ -29,3 +30,4 @@
 <% end %>
 
 
+</main>

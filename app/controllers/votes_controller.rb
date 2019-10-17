@@ -23,7 +23,7 @@ class VotesController < ApplicationController
   end
 
   def not_logged_in_error
-    flash[:not_logged_in] = "You have to be logged in to vote"
+    flash[:not_logged_in] = "You must log in to vote"
     redirect_to works_path
   end
 

@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = User.find_by(id: params[:id])
     @user_id = params[:id].to_i
     if @user.nil?
       redirect_to user_path
