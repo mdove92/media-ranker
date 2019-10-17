@@ -1,4 +1,4 @@
-<main>
+<main class="content-container">
 <section>
   <h2><%=@work.title%></h1>
   <p>Created by: <%=@work.creator%></p>
@@ -31,7 +31,7 @@
       <table class="table"> 
 <% @work.votes.each do |vote| %>
 <tr>
-<td><%=link_to "#{vote.user.username}",  user_path(user_id: vote.user.id) %></td>
+<td><%=link_to vote.user.username,  user_path( vote.user.id) %></td>
 <td><%= display_date(vote.created_at) %></td>
 
 </tr>
