@@ -1,52 +1,8 @@
 <h1 class="index-header">The Index Action: The place where you get all of the works!</h1>
 
 <section>
-  <h2>
-    List of all Works 
-
-  </h2>
-  <ul>
-    <% @works.each do |work| %>
-      <li>
-         <%= link_to work.title, work_path( work.id ) %> by <%= work.creator %>
-         <%= link_to "(Delete)", work_path( work.id ), method: :delete, data: { confirm: "Are YOU sure?" }, class: "index-delete-link" %> 
-       </li> 
-     <% end%>
-  </ul>
-  
-  <h3>Albums</h3>
-<ul>
- <% @albums.each do |album|%>
-  <li>
-         <%= link_to album.title, work_path( album.id ) %> by <%= album.creator %>
-         <%= link_to "(Delete)", work_path( album.id ), method: :delete, data: { confirm: "Are YOU sure?" }, class: "index-delete-link" %> 
-       </li> 
-    <%end%>
- </ul>
-
-  
-  <h3>Movies</h3>
-<ul> 
-<% @movies.each do |movie|%>
-  <li>
-         <%= link_to movie.title, work_path( movie.id ) %> by <%= movie.creator %>
-         <%= link_to "(Delete)", work_path( movie.id ), method: :delete, data: { confirm: "Are YOU sure?" }, class: "index-delete-link" %> 
-    </li> 
-     <%end%>
- </ul>
-
-  <h3>Books</h3>
-   <ul>
-   <% @books.each do |book|%>
-  <li>
-         <%= link_to book.title, work_path( book.id ) %> by <%= book.creator %>
-         <%= link_to "(Delete)", work_path( book.id ), method: :delete, data: { confirm: "Are YOU sure?" }, class: "index-delete-link" %> 
-       </li> 
-     <%end%>
- </ul>
-</section>
-
-<table>
+  <h2>Books</h2> 
+   <table class="table"> 
 <th> Votes </th>
 <th> Title </th>
 <th> Created by</th>
@@ -61,16 +17,59 @@
 <td><%= book.title %></td>
 <td><%= book.creator %></td>
 <td><%= book.publication_year %></td>
- <% if book.upvote %>
-<td><%= upvoted %></td>
+ <% if book %>
+<td><%= "upvoted" %></td>
 <% else %>
-<td>   <%=link_to "Upvote", upvote_path, class:"btn btn-primary" %>></td>        
+<td>   <%=link_to "Upvote", root_path, class:"btn btn-primary" %></td>        
 <%end%>
-<td><%= link_to '<button type="button">Delete</button>'.html_safe, trip_path( trip.id ), method: :delete, data: { confirm: "Are you sure you want to delete this trip?"}%></td>
-
-
 </tr>
-
 <%end%>
-
 </table>
+
+  <h2>Movies</h2> 
+<table class="table"> 
+<th> Votes </th>
+<th> Title </th>
+<th> Created by</th>
+<th> Published </th>
+<th>Upvote</th>
+
+<% @movies.each do |movie| %>
+<tr>
+<td><%= movie.votes.length %></td>
+<td><%= movie.title %></td>
+<td><%= movie.creator %></td>
+<td><%= movie.publication_year %></td>
+ <% if movie %>
+<td><%= "upvoted" %></td>
+<% else %>
+<td>   <%=link_to "Upvote", root_path, class:"btn btn-primary" %></td>        
+<%end%>
+</tr>
+<%end%>
+</table>
+
+  <h2>Albums</h2> 
+<table class="table"> 
+<th> Votes </th>
+<th> Title </th>
+<th> Created by</th>
+<th> Published </th>
+<th>Upvote</th>
+
+<% @albums.each do |album| %>
+<tr>
+<td><%= album.votes.length %></td>
+<td><%= album.title %></td>
+<td><%= album.creator %></td>
+<td><%= album.publication_year %></td>
+ <% if album %>
+<td><%= "upvoted" %></td>
+<% else %>
+<td>   <%=link_to "Upvote", root_path, class:"btn btn-primary" %></td>        
+<%end%>
+</tr>
+<%end%>
+</table>
+    
+</section>
