@@ -1,6 +1,6 @@
 class WorksController < ApplicationController
   before_action :find_user, only: [:index, :show, :create, :edit, :update, :destroy]
-  before_action :find_work, only: [:index, :show, :create, :edit, :update, :destroy]
+  before_action :find_work, only: [:index, :show, :edit, :update, :destroy]
 
   def index
     @works = Work.all
@@ -22,6 +22,7 @@ class WorksController < ApplicationController
   end
 
   def create
+    @work = Work.new(work_params)
     if @work.save
       redirect_to works_path(@work.id)
     else

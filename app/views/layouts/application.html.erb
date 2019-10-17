@@ -18,13 +18,16 @@
     <nav class="app-header__nav">
         <ul class="nav app-header__site-nav-container">
             <li class="nav-item app-header__nav_item">
-                <%=link_to "view top media", root_path, class:"nav-link" %>
+                <%=link_to "View Top Media", root_path, class:"nav-link" %>
             </li>
             <li class="nav-item app-header__nav_item">
-                <%=link_to "view all media", works_path, class:"nav-link" %>
+                <%=link_to "View All Media", works_path, class:"nav-link" %>
+            </li>
+             <li class="nav-item app-header__nav_item">
+                <%=link_to "Add New Work", new_work_path, class:"nav-link" %>
             </li>
             <li class="nav-item app-header__nav_item">
-                <%=link_to "view all users", users_path, class:"nav-link" %>
+                <%=link_to "View All Users", users_path, class:"nav-link" %>
             </li>
         </ul>
         <ul class="nav app-header__user-nav-container">
