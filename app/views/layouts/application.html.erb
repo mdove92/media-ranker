@@ -29,16 +29,22 @@
             <li class="nav-item app-header__nav_item">
                 <%=link_to "View All Users", users_path, class:"nav-link" %>
             </li>
+          
         </ul>
         <ul class="nav app-header__user-nav-container">
-        <li class="nav-item app-header__nav_item">
-          <% if @user%>
-            <%= link_to "Logout", logout_path, class:"btn btn-primary", method: :post %>
-          <% else %>
-            <%=link_to "Log In", login_path, class:"btn btn-primary" %>
-          <%end%>
-  
-        </li>
+          <li class="nav-item app-header__nav_item">
+                <% if @user%>
+            <%="Hello, #{@user.username}"%>
+            <%end%>
+            </li>
+             
+          <li class="nav-item app-header__nav_item">
+           <% if @user%>
+              <%= link_to "Logout", logout_path, class:"btn btn-primary", method: :post %>
+            <% else %>
+              <%=link_to "Log In", login_path, class:"btn btn-primary" %>
+            <%end%>
+          </li>
         </ul>
     </nav>
   </header>

@@ -38,6 +38,24 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    user_to_delete = User.find_by(id: params[:id])
+    if user_to_delete.nil?
+      redirect_to root_path
+      return
+    else
+      votes = Vote.where(user_id: user_to_delete.id)
+
+      votes.each do |vote|
+        vote.destroy
+      end
+
+      user_to_delete.destroy
+      redirect_to root_path
+      return
+    end
+  end
+
   def logout
     @user = User.find_by(id: session[:user_id])
     # @user = User.find_by(username: username)

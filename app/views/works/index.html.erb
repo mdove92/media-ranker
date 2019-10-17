@@ -1,5 +1,3 @@
-<h1 class="index-header">The Index Action: The place where you get all of the works!</h1>
-
 <section>
   <h2>Books</h2> 
    <table class="table"> 
@@ -17,7 +15,9 @@
 <td><%= book.title %></td>
 <td><%= book.creator %></td>
 <td><%= book.publication_year %></td>
- <% if Vote.find_by(work_id: book.id, user_id: @user.id) %>
+<% if !@user %>
+<td> <%=link_to "Upvote", vote_error_path, method: :post, class:"btn btn-primary" %></td>  
+ <% elsif Vote.find_by(work_id: book.id, user_id: @user.id) %>
 <td><%=  link_to "Un-Upvote" , upvote_path(work_id: book.id, user_id: @user.id), method: :post, class:"btn btn-primary"%></td>
 <% else %>
 <td>   <%=link_to "Upvote", upvote_path(work_id: book.id, user_id: @user.id), method: :post, class:"btn btn-primary" %></td>        
@@ -40,10 +40,12 @@
 <td><%= movie.title %></td>
 <td><%= movie.creator %></td>
 <td><%= movie.publication_year %></td>
- <% if movie %>
-<td><%= "upvoted" %></td>
+ <% if !@user %>
+<td> <%=link_to "Upvote", vote_error_path, method: :post, class:"btn btn-primary" %></td>  
+ <% elsif Vote.find_by(work_id: movie.id, user_id: @user.id) %>
+<td><%=  link_to "Un-Upvote" , upvote_path(work_id: movie.id, user_id: @user.id), method: :post, class:"btn btn-primary"%></td>
 <% else %>
-<td>   <%=link_to "Upvote", root_path, class:"btn btn-primary" %></td>        
+<td>   <%=link_to "Upvote", upvote_path(work_id: movie.id, user_id: @user.id), method: :post, class:"btn btn-primary" %></td>        
 <%end%>
 </tr>
 <%end%>
@@ -63,10 +65,12 @@
 <td><%= album.title %></td>
 <td><%= album.creator %></td>
 <td><%= album.publication_year %></td>
- <% if album %>
-<td><%= "upvoted" %></td>
+ <% if !@user %>
+<td> <%=link_to "Upvote", vote_error_path, method: :post, class:"btn btn-primary" %></td>  
+ <% elsif Vote.find_by(work_id: album.id, user_id: @user.id) %>
+<td><%=  link_to "Un-Upvote" , upvote_path(work_id: album.id, user_id: @user.id), method: :post, class:"btn btn-primary"%></td>
 <% else %>
-<td>   <%=link_to "Upvote", root_path, class:"btn btn-primary" %></td>        
+<td>   <%=link_to "Upvote", upvote_path(work_id: album.id, user_id: @user.id), method: :post, class:"btn btn-primary" %></td>        
 <%end%>
 </tr>
 <%end%>

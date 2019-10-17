@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get "/users/current", to: "users#current", as: "current_user"
 
   post "/upvote", to: "votes#create", as: "upvote"
+  post "/upvote_error", to: "votes#not_logged_in_error", as: "vote_error"
 
   resources :users
   resources :works
