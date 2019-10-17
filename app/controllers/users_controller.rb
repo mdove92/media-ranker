@@ -1,10 +1,12 @@
 class UsersController < ApplicationController
+  before_action :find_user_by_session, only: [:logout, :current]
+  before_action :find_user_by_params, only: [:show, :destroy]
+
   def index
     @users = User.all
   end
 
   def show
-    @user = User.find_by(id: params[:id])
     @user_id = params[:id].to_i
     if @user.nil?
       redirect_to user_path
@@ -32,7 +34,6 @@ class UsersController < ApplicationController
   end
 
   def current
-    @user = User.find_by(id: session[:user_id])
     unless @user
       flash[:error] = "You must be logged in to see this page"
       redirect_to root_path
@@ -40,26 +41,23 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    user_to_delete = User.find_by(id: params[:id])
-    if user_to_delete.nil?
+    if user.nil?
       redirect_to root_path
       return
     else
-      votes = Vote.where(user_id: user_to_delete.id)
+      votes = Vote.where(user_id: user.id)
 
       votes.each do |vote|
         vote.destroy
       end
 
-      user_to_delete.destroy
+      user.destroy
       redirect_to root_path
       return
     end
   end
 
   def logout
-    @user = User.find_by(id: session[:user_id])
-    # @user = User.find_by(username: username)
     if @user
       session[:user_id] = nil
       flash[:success] = "Successfully logged out as returning user #{@user.username}"
@@ -68,5 +66,15 @@ class UsersController < ApplicationController
     end
 
     redirect_to root_path
+  end
+
+  private
+
+  def find_user_by_session
+    @user = User.find_by(id: session[:user_id])
+  end
+
+  def find_user_by_params
+    @user = User.find_by(id: params[:id])
   end
 end
