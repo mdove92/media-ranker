@@ -29,7 +29,6 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       flash[:success] = "Successfully logged in as new user #{username}"
     end
-
     redirect_to root_path
   end
 
@@ -64,7 +63,6 @@ class UsersController < ApplicationController
     else
       flash[:error] = "You are BAD "
     end
-
     redirect_to root_path
   end
 
