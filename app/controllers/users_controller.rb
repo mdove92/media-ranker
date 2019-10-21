@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   end
 
   def login
-    username = params[:user][:username]
+    username = params[:username]
     @user = User.find_by(username: username)
     if @user
       session[:user_id] = @user.id
@@ -29,7 +29,6 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       flash[:success] = "Successfully logged in as new user #{username}"
     end
-
     redirect_to root_path
   end
 
@@ -64,7 +63,6 @@ class UsersController < ApplicationController
     else
       flash[:error] = "You are BAD "
     end
-
     redirect_to root_path
   end
 

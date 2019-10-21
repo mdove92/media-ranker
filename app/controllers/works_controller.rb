@@ -24,9 +24,11 @@ class WorksController < ApplicationController
   def create
     @work = Work.new(work_params)
     if @work.save
+      flash[:success] = "Work #{@work.id} added successfully"
       redirect_to works_path(@work.id)
     else
-      new_work_path(id: params[:id])
+      flash.now[:error] = "Please enter a title."
+      render :new
     end
   end
 
@@ -37,14 +39,13 @@ class WorksController < ApplicationController
   end
 
   def update
-    if !@work
-      redirect_to works_path
-      return
-    end
-    if @work.update(work_params)
+    if @work.valid?
+      @work.save
+      flash[:success] = "Work #{@work.id} edited successfully"
       redirect_to work_path(@work.id)
     else
-      render new_work_path
+      flash.now[:error] = "Please enter a title."
+      render "edit"
     end
   end
 
