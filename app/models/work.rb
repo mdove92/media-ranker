@@ -6,9 +6,13 @@ class Work < ApplicationRecord
     spotlighted_work = Work.all.sort_by { |work| -work.votes.length }.first
   end
 
-  def self.by_category(category)
+  def self.by_category(category, count = 0)
     works_list = Work.where(category: category)
-    sorted_works = works_list.sort_by { |work| -work.votes.length }.slice(0..9)
-    return sorted_works
+
+    if (count > 0)
+      return works_list.sort_by { |work| -work.votes.length }.slice(0..count - 1)
+    else
+      return works_list.sort_by { |work| -work.votes.length }
+    end
   end
 end

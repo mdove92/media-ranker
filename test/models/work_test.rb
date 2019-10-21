@@ -135,6 +135,12 @@ describe Work do
         best_pancakes = Work.by_category("pancake")
         expect(best_pancakes.count).must_equal 0
       end
+
+      it "returns the top n elements when second parameter specified" do
+        best_albums = Work.by_category("album", 2)
+        expect(best_albums.count).must_equal 2
+      end
+
       it "returns the correctly sorted list for albums" do
         best_albums = Work.by_category("album")
         expect(best_albums.count).must_equal 4
